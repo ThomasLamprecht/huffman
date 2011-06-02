@@ -31,4 +31,9 @@ cinfo *buildCinfo(DOC *doc_r)
 	return r;
 }
 
-
+tree *buildTree(cinfo *cr)
+{
+	tree *r=NULL;
+	
+	return r;
+}
