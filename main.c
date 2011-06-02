@@ -61,9 +61,13 @@ int main(int countArgs, char **args)
 				uprintf("Press Enter to build cinfo list...\n");				
 				waitKey('\n');
 				cr = buildCinfo(dr);
+				printCinfoList(cr);				
+				uprintf("Press Enter to continue...\n");				
+				waitKey('\n');
+				cr = sortCinfoInserted(cr,DESC);
 				printCinfoList(cr);
 				freeCinfo(cr);
-				uprintf("Press Enter to go back to the menu...\n");				
+				uprintf("Press Enter to continue...\n");				
 				waitKey('\n');
 				freeDoc(dr);
 				break;

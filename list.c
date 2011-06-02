@@ -399,8 +399,66 @@ int countCinfoEntrys(cinfo *r)
 	return i;
 }
 
+cinfo *sortCinfoInserted(cinfo *r, char sort_order)
+{
+	cinfo *actual=r->next, *tmp=r, *prev_tmp = NULL, *prev=r, *next=NULL;
+	int i=0,j=0;
+	if(sort_order==ASC)
+	{
+		while(actual!=NULL)
+		{
+			next = actual->next;
+			tmp = r;
+			prev_tmp = NULL;
+			while(actual->n>=tmp->n&&tmp!=actual)
+			{
+				prev_tmp = tmp;
+				tmp = tmp->next;
+				i++;
+			}
+			j++;
+			r = insertCinfoElement(r,prev,prev_tmp);
+			
+			prev = getPrevElement(r,next);
+			actual = next;
+		}
+	}
+	else
+	{
+		while(actual!=NULL)
+		{
+			next = actual->next;
+			tmp = r;
+			prev_tmp = NULL;
+			while(actual->n<=tmp->n&&tmp!=actual)
+			{
+				prev_tmp = tmp;
+				tmp = tmp->next;
+				i++;
+			}
+			j++;
+			r = insertCinfoElement(r,prev,prev_tmp);
+			
+			prev = getPrevElement(r,next);
+			actual = next;
+		}
+	}
+	
+	printf("j: %d; i: %d\n",j,i);
+	
+	return r;
+}
+
+cinfo *getPrevElement(cinfo *r, cinfo *el)
+{
+	cinfo *l=r;
+	while(l->next!=el)
+		l = l->next;
+	return l;
+}
+
 // Do insert 'prev_el' as root element use NULL as 'prev_ins' parameter
-cinfo *inserCinfoElement(cinfo *r, cinfo *prev_el, cinfo *prev_ins)
+cinfo *insertCinfoElement(cinfo *r, cinfo *prev_el, cinfo *prev_ins)
 {
 	cinfo *el;
 	if(prev_el==NULL) return r;

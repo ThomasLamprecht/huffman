@@ -89,7 +89,7 @@ void _printMenu(GSentry *r, GSentry *selected)
 	while(actual!=NULL)
 	{
 		if(actual==selected) printf("→");
-		printf("\t%d%s%s \n",actual->id,(actual->id>10)?" ":"  ",actual->entry);
+		printf("\t%d%s%s \n",actual->id,(actual->id>10)?"  ":(actual->id>100)?" ":"   ",actual->entry);
 		actual = actual->next;
 	}
 	printf("-----------------------\n");

@@ -73,7 +73,10 @@ void printCinfoList(cinfo *r);
 int countCinfoEntrys(cinfo *start);
 void freeCinfo(cinfo *start);
 // Sorting Cinfo
+cinfo *getPrevElement(cinfo *r, cinfo *el);
 void *swapCinfoElements(cinfo **r,cinfo *prev_el1,cinfo *prev_el2);
+cinfo *insertCinfoElement(cinfo *r, cinfo *prev_el, cinfo *prev_ins);
+cinfo *sortCinfoInserted(cinfo *r, char sort_order);
 
 // DOC List zeugs
 DOC *initDOC(char *name); // deprecated
