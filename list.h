@@ -69,6 +69,7 @@ cinfo *appendCinfoEntry(cinfo *r,char c);
 cinfo *appendCinfoEntryHere(cinfo *here,char c);
 cinfo *mallocCinfoElement(void);
 cinfo *isInCinfo(cinfo *r, char c);
+cinfo *deleteCinfoAfter(cinfo *r, cinfo *prev);
 void printCinfoList(cinfo *r);
 int countCinfoEntrys(cinfo *start);
 void freeCinfo(cinfo *start);

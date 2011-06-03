@@ -12,3 +12,4 @@
 #endif
 
 cinfo *buildCinfo(DOC *doc_r);
+tree *buildTree(cinfo *cr);

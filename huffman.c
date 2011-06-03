@@ -33,7 +33,8 @@ cinfo *buildCinfo(DOC *doc_r)
 
 tree *buildTree(cinfo *cr)
 {
-	tree *r=NULL;
+	if(countCinfoEntrys(cr)<2) return NULL;
+	tree *layer_r = cpCinfo(cr);
 	
-	return r;
+	return layer_r;
 }

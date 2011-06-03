@@ -23,32 +23,41 @@ or look at http://www.gnu.org/licenses/gpl-2.0-standalone.html
 int main(int countArgs, char **args)
 {
 	int i,j,k,run=1,selection	;
-	GSentry *r,*actual;
+	GSentry *mr,*mactual;
+	DOC *doc=NULL;
 	
-	r = initMenu("Read File");
-	appendMenuEntry(r,"Echo File",1);
-	appendMenuEntry(r,"Count chars",2);
-	appendMenuEntry(r,"Debug",DEBUG);
-	appendMenuEntry(r,"Quit",QUIT);
+	mr = initMenu("Read File");
+	appendMenuEntry(mr,"Echo File",1);
+	appendMenuEntry(mr,"Count chars",2);
+	appendMenuEntry(mr,"Debug",DEBUG);
+	appendMenuEntry(mr,"Quit",QUIT);
 	
 	while(run)
 	{		
-		switch((selection = menuIO(r,_printMenu)))
+		switch((selection = menuIO(mr,_printMenu)))
 		{
 			case QUIT:
 			{
 				run = 0;
 				break;
 			}
+			case 1:
+			{
+				if(doc==NULL)
+				{
+					uprintf("Read a file first!\n");
+					waitKey('\n');
+					break;
+				}
+				printDocList(doc);
+				break;
+			}
 			case READ:
 			{
-				FILE *f;
-				DOC *r;
-				r=readFile("test");
-				printDocList(r);
-				uprintf("Press Enter to continue...\n");
+				FILE *f;				
+				doc=readFile("test");
+				uprintf("File read, press enter to continue...\n");
 				waitKey('\n');
-				freeDoc(r);
 				break;
 			}
 			case DEBUG:
@@ -74,6 +83,8 @@ int main(int countArgs, char **args)
 			}
 		}
 	}
+	freeMenu(mr);
+	if(doc!=NULL) freeDoc(doc);
 	printf("Goodbye\n");
 	return 0;
 }

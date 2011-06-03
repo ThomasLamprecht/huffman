@@ -37,7 +37,7 @@ io_d.o: io.c io.h
 list_d.o: list.c list.h
 	$(CC) -c list.c -g -o list_d.o
 
-tree_f.o: tree.c tree.h
+tree_d.o: tree.c tree.h
 	$(CC) -c tree.c -g -o tree_d.o
 
 main_d.o: main.c main.h

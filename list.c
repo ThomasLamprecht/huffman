@@ -44,7 +44,7 @@ DOC *appendDocEntryHere(DOC *here,char *content)
 	here->next->next=NULL;
 	strcpy(here->next->content,content);
 	
-	return here;	
+	return here;
 }
 
 DOC *mallocDocElement(void)
@@ -354,6 +354,23 @@ void printCinfoList(cinfo *r)
 		actual=actual->next;
 	}
 	return;
+}
+
+cinfo *deleteCinfoAfter(cinfo *r, cinfo *prev)
+{
+	cinfo *l,*tmp;
+	if(r==NULL) return NULL;
+	if(prev==NULL)
+		l=r;
+	else l = prev->next;
+	while(l->next!=NULL)
+	{
+		tmp=l->next;
+		free(l);
+		l=tmp;
+	}
+	free(tmp);
+	return (prev==NULL)?NULL:r;
 }
 
 cinfo *mallocCinfoElement(void)
